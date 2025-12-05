@@ -6,7 +6,7 @@ const TopNav: React.FC = () => {
     <header className="nav">
       <div className="nav-title">continuum.atlas</div>
       <nav className="nav-links">
-        <Link className="nav-link" href="/soryn-base">
+        <Link className="nav-link" href="/soryn">
           Soryn Base
         </Link>
         <Link className="nav-link" href="/systems">
@@ -17,6 +17,12 @@ const TopNav: React.FC = () => {
         </Link>
         <Link className="nav-link" href="/notes">
           Notes
+        </Link>
+        <Link className="nav-link" href="/fog-corridor">
+          Fog Corridor
+        </Link>
+        <Link className="nav-link" href="/learning-annex">
+          Learning Annex
         </Link>
         <Link className="nav-link" href="/constitution">
           Constitution
