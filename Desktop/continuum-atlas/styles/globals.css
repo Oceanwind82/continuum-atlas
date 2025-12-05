@@ -317,40 +317,36 @@ main {
 .starfield {
   position: relative;
   overflow: hidden;
+  background: 
+    /* Scattered bright stars */
+    radial-gradient(3px 3px at 20px 30px, #ffffff, transparent),
+    radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.9), transparent),
+    radial-gradient(2px 2px at 90px 40px, #ffffff, transparent),
+    radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.8), transparent),
+    radial-gradient(3px 3px at 160px 30px, rgba(255,255,255,0.9), transparent),
+    radial-gradient(2px 2px at 50px 120px, rgba(255,255,255,0.7), transparent),
+    radial-gradient(2px 2px at 180px 60px, rgba(255,255,255,0.8), transparent),
+    radial-gradient(1px 1px at 10px 80px, #ffffff, transparent),
+    radial-gradient(2px 2px at 170px 100px, rgba(255,255,255,0.6), transparent),
+    /* Base cosmic background */
+    radial-gradient(circle at top, #020617 0%, #0a0f25 40%, #000 100%);
+  background-repeat: repeat, repeat, repeat, repeat, repeat, repeat, repeat, repeat, repeat, no-repeat;
+  background-size: 
+    120px 80px,   /* Denser star pattern */
+    100px 60px,   
+    140px 90px,   
+    110px 70px,   
+    130px 85px,   
+    90px 50px,    
+    150px 95px,   
+    80px 40px,    
+    160px 100px,  
+    100% 100%;    /* Full background */
 }
 
-/* --- tiny drifting stars --- */
-.starfield::before,
-.starfield::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background-repeat: repeat;
-  opacity: 0.5;
-}
+/* --- Static starfield only (no animated drifting) --- */
 
-/* small stars texture */
-.starfield::before {
-  background-image: url("data:image/svg+xml,%3Csvg width='4' height='4' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='1' cy='1' r='1' fill='%23ffffff40'/%3E%3C/svg%3E");
-  animation: starDrift 140s linear infinite;
-}
-
-/* medium stars texture */
-.starfield::after {
-  background-image: url("data:image/svg+xml,%3Csvg width='6' height='6' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='2' cy='2' r='1.5' fill='%23ffffff20'/%3E%3C/svg%3E");
-  animation: starDrift 200s linear infinite reverse;
-}
-
-/* drifting motion */
-@keyframes starDrift {
-  from {
-    transform: translate3d(0, 0, 0);
-  }
-  to {
-    transform: translate3d(-500px, -500px, 0);
-  }
-}
+/* --- Removed animated starDrift - using static stars only --- */
 
 /* --- nebula glow pulses --- */
 .nebula-glow::before {
@@ -359,10 +355,11 @@ main {
   inset: 0;
   pointer-events: none;
   background:
-    radial-gradient(circle at 25% 30%, rgba(56, 189, 248, 0.14), transparent 45%),
-    radial-gradient(circle at 70% 65%, rgba(139, 92, 246, 0.14), transparent 50%);
+    radial-gradient(circle at 25% 30%, rgba(56, 189, 248, 0.25), transparent 45%),
+    radial-gradient(circle at 70% 65%, rgba(139, 92, 246, 0.25), transparent 50%);
   mix-blend-mode: screen;
   animation: nebulaPulse 18s ease-in-out infinite alternate;
+  z-index: 2;
 }
 
 @keyframes nebulaPulse {
@@ -392,3 +389,5 @@ main {
   50% { opacity: 1; }
   100% { opacity: 0.2; }
 }
+
+/* --- Enhanced starfield with scattered stars applied above --- */

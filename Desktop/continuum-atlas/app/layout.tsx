@@ -19,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        <main className="min-h-screen starfield nebula-glow bg-[#0a0f25] text-slate-100">
+        <main className="min-h-screen starfield nebula-glow text-slate-100 relative overflow-hidden">
           <Shell>
             <TopNav />
             {children}
