@@ -318,35 +318,137 @@ main {
   position: relative;
   overflow: hidden;
   background: 
-    /* Scattered bright stars */
-    radial-gradient(3px 3px at 20px 30px, #ffffff, transparent),
-    radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.9), transparent),
-    radial-gradient(2px 2px at 90px 40px, #ffffff, transparent),
-    radial-gradient(1px 1px at 130px 80px, rgba(255,255,255,0.8), transparent),
-    radial-gradient(3px 3px at 160px 30px, rgba(255,255,255,0.9), transparent),
-    radial-gradient(2px 2px at 50px 120px, rgba(255,255,255,0.7), transparent),
-    radial-gradient(2px 2px at 180px 60px, rgba(255,255,255,0.8), transparent),
-    radial-gradient(1px 1px at 10px 80px, #ffffff, transparent),
-    radial-gradient(2px 2px at 170px 100px, rgba(255,255,255,0.6), transparent),
+    /* Subtle base stars - barely visible */
+    radial-gradient(1px 1px at 23% 15%, rgba(255,255,255,0.3), transparent),
+    radial-gradient(1px 1px at 67% 23%, rgba(255,255,255,0.2), transparent),
+    radial-gradient(1px 1px at 89% 41%, rgba(255,255,255,0.4), transparent),
+    radial-gradient(1px 1px at 12% 67%, rgba(255,255,255,0.2), transparent),
+    radial-gradient(1px 1px at 45% 82%, rgba(255,255,255,0.3), transparent),
+    radial-gradient(1px 1px at 78% 56%, rgba(255,255,255,0.2), transparent),
+    radial-gradient(1px 1px at 34% 34%, rgba(255,255,255,0.4), transparent),
+    radial-gradient(1px 1px at 91% 78%, rgba(255,255,255,0.2), transparent),
+    radial-gradient(1px 1px at 56% 12%, rgba(255,255,255,0.3), transparent),
+    radial-gradient(1px 1px at 8% 89%, rgba(255,255,255,0.2), transparent),
+    radial-gradient(1px 1px at 72% 67%, rgba(255,255,255,0.3), transparent),
+    radial-gradient(1px 1px at 19% 45%, rgba(255,255,255,0.2), transparent),
     /* Base cosmic background */
     radial-gradient(circle at top, #020617 0%, #0a0f25 40%, #000 100%);
-  background-repeat: repeat, repeat, repeat, repeat, repeat, repeat, repeat, repeat, repeat, no-repeat;
+  background-repeat: repeat, repeat, repeat, repeat, repeat, repeat, repeat, repeat, repeat, repeat, repeat, repeat, no-repeat;
   background-size: 
-    120px 80px,   /* Denser star pattern */
-    100px 60px,   
-    140px 90px,   
-    110px 70px,   
-    130px 85px,   
-    90px 50px,    
-    150px 95px,   
-    80px 40px,    
-    160px 100px,  
+    340px 280px,   /* Large, sparse patterns for natural randomness */
+    280px 220px,   
+    420px 360px,   
+    200px 150px,   
+    380px 310px,   
+    250px 180px,    
+    320px 260px,   
+    450px 380px,    
+    180px 140px,  
+    300px 240px,
+    370px 290px,
+    220px 170px,
     100% 100%;    /* Full background */
 }
 
-/* --- Static starfield only (no animated drifting) --- */
+/* --- Twinkling star layers --- */
+.starfield::before,
+.starfield::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-repeat: repeat;
+  z-index: 10;
+}
 
-/* --- Removed animated starDrift - using static stars only --- */
+/* Twinkling layer 1 - soft twinkling stars */
+.starfield::before {
+  background: 
+    radial-gradient(2px 2px at 17% 29%, rgba(255,255,255,0.8), transparent),
+    radial-gradient(2px 2px at 73% 47%, rgba(255,255,255,0.9), transparent),
+    radial-gradient(1px 1px at 41% 71%, rgba(255,255,255,0.7), transparent),
+    radial-gradient(2px 2px at 86% 18%, rgba(255,255,255,0.8), transparent),
+    radial-gradient(1px 1px at 29% 83%, rgba(255,255,255,0.9), transparent),
+    radial-gradient(1px 1px at 52% 12%, rgba(255,255,255,0.6), transparent),
+    radial-gradient(2px 2px at 8% 58%, rgba(255,255,255,0.8), transparent),
+    radial-gradient(1px 1px at 94% 73%, rgba(255,255,255,0.7), transparent);
+  background-size: 
+    400px 300px,   /* Slow twinkle - large pattern */
+    250px 200px,   /* Medium twinkle */
+    350px 280px,   /* Slow twinkle */
+    180px 140px,   /* Fast twinkle - small pattern */
+    300px 240px,   /* Medium twinkle */
+    500px 400px,   /* Very slow twinkle */
+    200px 160px,   /* Fast twinkle */
+    320px 260px;   /* Medium twinkle */
+  animation: 
+    softTwinkle1 12.7s ease-in-out infinite,
+    softTwinkle2 9.3s ease-in-out infinite 2.8s,
+    softTwinkle3 15.9s ease-in-out infinite 6.2s,
+    softTwinkle4 8.8s ease-in-out infinite 1.5s,
+    softTwinkle1 11.2s ease-in-out infinite 4.8s,
+    softTwinkle2 14.1s ease-in-out infinite 7.4s,
+    softTwinkle3 10.7s ease-in-out infinite 2.9s,
+    softTwinkle4 13.3s ease-in-out infinite 5.1s;
+  opacity: 1;
+}
+
+/* Twinkling layer 2 - gentle secondary twinkles */
+.starfield::after {
+  background: 
+    radial-gradient(2px 2px at 63% 22%, rgba(255,255,255,0.7), transparent 60%),
+    radial-gradient(3px 3px at 11% 64%, rgba(255,255,255,0.8), transparent 70%),
+    radial-gradient(1px 1px at 84% 76%, rgba(255,255,255,0.6), transparent 50%),
+    radial-gradient(2px 2px at 37% 15%, rgba(255,255,255,0.7), transparent 60%),
+    radial-gradient(1px 1px at 92% 51%, rgba(255,255,255,0.6), transparent 50%),
+    radial-gradient(1px 1px at 25% 88%, rgba(255,255,255,0.5), transparent),
+    radial-gradient(2px 2px at 78% 33%, rgba(255,255,255,0.7), transparent 60%);
+  background-size: 
+    220px 180px,   /* Medium speed */
+    380px 300px,   /* Very slow */
+    150px 120px,   /* Fast */
+    280px 220px,   /* Medium */
+    460px 370px,   /* Very slow */
+    190px 150px,   /* Fast */
+    320px 260px;   /* Medium slow */
+  animation: 
+    softTwinkle2 11.4s ease-in-out infinite 3.7s,
+    softTwinkle3 16.8s ease-in-out infinite 8.2s,
+    softTwinkle4 9.9s ease-in-out infinite 1.3s,
+    softTwinkle1 13.1s ease-in-out infinite 5.8s,
+    softTwinkle2 12.2s ease-in-out infinite 4.9s,
+    softTwinkle3 8.6s ease-in-out infinite 2.4s,
+    softTwinkle4 15.7s ease-in-out infinite 6.1s;
+  opacity: 1;
+}
+
+/* --- Seamlessly looping twinkling patterns --- */
+@keyframes softTwinkle1 {
+  0%, 100% { opacity: 0.4; }
+  25% { opacity: 0.5; }
+  50% { opacity: 0.65; }
+  75% { opacity: 0.55; }
+}
+
+@keyframes softTwinkle2 {
+  0%, 100% { opacity: 0.35; }
+  30% { opacity: 0.5; }
+  60% { opacity: 0.6; }
+  90% { opacity: 0.45; }
+}
+
+@keyframes softTwinkle3 {
+  0%, 100% { opacity: 0.45; }
+  25% { opacity: 0.6; }
+  50% { opacity: 0.5; }
+  75% { opacity: 0.65; }
+}
+
+@keyframes softTwinkle4 {
+  0%, 100% { opacity: 0.3; }
+  33% { opacity: 0.55; }
+  66% { opacity: 0.45; }
+}
 
 /* --- nebula glow pulses --- */
 .nebula-glow::before {
@@ -355,11 +457,12 @@ main {
   inset: 0;
   pointer-events: none;
   background:
-    radial-gradient(circle at 25% 30%, rgba(56, 189, 248, 0.25), transparent 45%),
-    radial-gradient(circle at 70% 65%, rgba(139, 92, 246, 0.25), transparent 50%);
+    radial-gradient(ellipse at 15% 25%, rgba(56, 189, 248, 0.12), transparent 60%),
+    radial-gradient(ellipse at 75% 70%, rgba(139, 92, 246, 0.15), transparent 55%),
+    radial-gradient(ellipse at 45% 85%, rgba(59, 130, 246, 0.08), transparent 40%);
   mix-blend-mode: screen;
-  animation: nebulaPulse 18s ease-in-out infinite alternate;
-  z-index: 2;
+  animation: nebulaPulse 22s ease-in-out infinite alternate;
+  z-index: 1;
 }
 
 @keyframes nebulaPulse {
@@ -373,21 +476,6 @@ main {
   }
 }
 
-/* --- twinkling individual stars --- */
-.twinkle-star {
-  position: absolute;
-  width: 2px;
-  height: 2px;
-  border-radius: 50%;
-  background: white;
-  opacity: 0.4;
-  animation: twinkle 3s linear infinite;
-}
-
-@keyframes twinkle {
-  0% { opacity: 0.2; }
-  50% { opacity: 1; }
-  100% { opacity: 0.2; }
-}
+/* --- Natural random twinkling creates realistic starfield --- */
 
 /* --- Enhanced starfield with scattered stars applied above --- */
